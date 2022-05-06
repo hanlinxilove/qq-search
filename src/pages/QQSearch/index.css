@@ -1,0 +1,31 @@
+.qs-wrap {
+    padding: 50px 40px;
+}
+
+.qs-title {
+    margin: 0 0 20px 0;
+    font-size: 32px;
+    font-weight: 500;
+    color: #333;
+}
+
+.qi-wrap {
+    margin-top: 30px;
+    padding: 0;
+}
+
+.loading {
+    height: 60px;
+    line-height: 60px;
+    padding: 0 24px;
+    font-size: 16px;
+    color: #999;
+}
+
+.err-tips {
+    height: 60px;
+    line-height: 60px;
+    padding: 0 24px;
+    font-size: 16px;
+    color: #999;
+}
