@@ -42,6 +42,6 @@
 
 ### `npm run build`
 
-## 项目打包命令
+## 项目测试命令
 
 ### `npm run test`
