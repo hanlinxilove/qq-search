@@ -1,11 +1,9 @@
 import { FC, ReactElement, useEffect, useState } from "react";
 import './index.css';
-import { useDebounce } from '../../utils/utils';
 
 interface IProps {
     value: string,
     type?: string,
-    wait?: number,
     placeholder?: string,
     onInput: (str: string) => void;
 }
@@ -13,20 +11,18 @@ interface IProps {
 const Input: FC<IProps> = ({
     value = '',
     type = 'text',
-    wait = 600,
     placeholder = '',
     onInput
 }): ReactElement => {
     const [iptVal, setIptVal] = useState(value);
-    const debounceVal = useDebounce(iptVal, wait);
 
     useEffect(() => {
         setIptVal(value);
     }, [value]);
 
     useEffect(() => {
-        onInput(debounceVal);
-    }, [debounceVal]);
+        onInput(iptVal);
+    }, [iptVal]);
 
     const onIpt = (e : any): void => {
         const str: string = e.target.value;

@@ -4,6 +4,7 @@ import { IQQInfo } from '../../typings/index';
 import Input from '../../components/Input';
 import QQInfo from '../../components/QQInfo';
 import './index.css';
+import { useDebounce } from '../../utils/utils';
 
 const qqReg = /^[1-9]\d{4,9}$/;
 
@@ -38,11 +39,11 @@ const QQSearch: FC = (): ReactElement => {
     const onInputChange = useCallback((keyword: string): void => {
         setKeyword(keyword.trim());
     }, []);
-    
-    useEffect(() => {
-        if(!keyword) {
+
+    const searchQQInfo = (value: string) => {
+        if(!value) {
             return setErrTips('暂无数据');
-        } else if(!qqReg.test(keyword)) {
+        } else if(!qqReg.test(value)) {
             return setErrTips('请输入正确的QQ号码');
         } else {
             setErrTips('');
@@ -50,12 +51,18 @@ const QQSearch: FC = (): ReactElement => {
         }
         
         getInfoByQQ({
-            qq: keyword
+            qq: value
         }).then(res => {
             setIsLoading(false);
             setQqInfo(res as any);
         })
-    }, [keyword]);
+    }
+
+    const debouncedKeyword = useDebounce(keyword, 600);
+    
+    useEffect(() => {
+        searchQQInfo(debouncedKeyword);
+    }, [debouncedKeyword]);
 
     return (
         <div className="qs-wrap">
