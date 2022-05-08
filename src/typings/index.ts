@@ -3,7 +3,6 @@ export interface IQQInput {
 }
 
 export interface IQQInfo {
-    code: number;
     lvzuan?: object;
     name: string;
     qlogo: string;

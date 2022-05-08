@@ -1,6 +1,3 @@
-import request from "./request";
-import { IQQInput } from '../typings/index';
-
-export const getInfoByQQ = (params: IQQInput) => {
-    return request.get('/qq.info', { params })
-};
+export const toSearchQQ = (value: string) => {
+    return fetch(`https://api.uomg.com/api/qq.info?qq=${value}`).then((res) => res.json());
+}
